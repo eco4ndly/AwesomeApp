@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Awesome Image Viewer</string>
+    <string name="image_list_item">Image list item</string>
+</resources>
