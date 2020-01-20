@@ -3,9 +3,11 @@ package com.eco4ndly.awesomeimageviewer.infra.di.module
 import android.app.Application
 import android.content.Context
 import com.eco4ndly.awesomeimageviewer.BuildConfig
+import com.eco4ndly.awesomeimageviewer.data.PhotoListRepository
 import com.eco4ndly.awesomeimageviewer.infra.callFactory
 import com.eco4ndly.awesomeimageviewer.infra.di.scope.BaseUrl
 import com.eco4ndly.awesomeimageviewer.infra.network.MockInterceptor
+import com.eco4ndly.awesomeimageviewer.infra.network.PhotoListRepositoryImpl
 import com.eco4ndly.awesomeimageviewer.netwotk.WebService
 import com.google.gson.Gson
 import dagger.Module
@@ -97,5 +99,11 @@ class AppModule {
     @Named("Mock Interceptor")
     fun provideMockInterceptor(): MockInterceptor {
         return MockInterceptor()
+    }
+
+    @Provides
+    @Singleton
+    fun providePhotoListRepository(webService: WebService): PhotoListRepository {
+        return PhotoListRepositoryImpl(webService)
     }
 }

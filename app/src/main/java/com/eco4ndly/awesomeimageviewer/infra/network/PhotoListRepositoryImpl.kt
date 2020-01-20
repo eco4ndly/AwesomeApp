@@ -1,5 +1,6 @@
 package com.eco4ndly.awesomeimageviewer.infra.network
 
+import com.eco4ndly.awesomeimageviewer.data.PhotoListRepository
 import com.eco4ndly.awesomeimageviewer.infra.applyCommonSideEffects
 import com.eco4ndly.awesomeimageviewer.infra.exception.NoResponseException
 import com.eco4ndly.awesomeimageviewer.infra.mapper.photos.PhotosMapper
@@ -13,9 +14,9 @@ import javax.inject.Inject
 /**
  * A Sayan Porya code on 2020-01-19
  */
-class PhotoListRepositoryImpl @Inject constructor(private val websServices: WebService)  {
+class PhotoListRepositoryImpl @Inject constructor(private val websServices: WebService): PhotoListRepository  {
 
-    suspend fun getPhotos() = flow {
+    override suspend fun getPhotos() = flow {
         websServices.getPhotos()
             .run {
                 if (isSuccessful && body() != null) {
